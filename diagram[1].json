@@ -1,0 +1,45 @@
+{
+  "version": 1,
+  "author": "Sadhana S",
+  "editor": "wokwi",
+  "parts": [
+    { "type": "board-esp32-devkit-c-v4", "id": "esp", "top": 0, "left": 0, "attrs": {} },
+    {
+      "type": "wokwi-dht22",
+      "id": "dht1",
+      "top": -76.5,
+      "left": -130.2,
+      "attrs": { "temperature": "30.7", "humidity": "60" }
+    },
+    {
+      "type": "board-ssd1306",
+      "id": "oled1",
+      "top": -25.66,
+      "left": 163.43,
+      "attrs": { "i2cAddress": "0x3c" }
+    },
+    {
+      "type": "wokwi-gas-sensor",
+      "id": "gas1",
+      "top": 145.5,
+      "left": 182.4,
+      "rotate": 180,
+      "attrs": {}
+    }
+  ],
+  "connections": [
+    [ "esp:TX", "$serialMonitor:RX", "", [] ],
+    [ "esp:RX", "$serialMonitor:TX", "", [] ],
+    [ "dht1:VCC", "esp:3V3", "red", [ "v28.8", "h86.4", "v-38.4" ] ],
+    [ "dht1:GND", "esp:GND.1", "black", [ "v0" ] ],
+    [ "dht1:SDA", "esp:4", "gold", [ "v192", "h249.7", "v0" ] ],
+    [ "oled1:GND", "esp:GND.3", "black", [ "v-9.6", "h-48", "v115.2" ] ],
+    [ "oled1:SCL", "esp:22", "purple", [ "v-76.8", "h-86.1", "v144", "h9.6" ] ],
+    [ "oled1:VCC", "esp:3V3", "red", [ "v-19.2", "h-211.05" ] ],
+    [ "esp:21", "oled1:SDA", "purple", [ "h177.64", "v-115.2", "h-48", "v0" ] ],
+    [ "esp:GND.3", "gas1:GND", "black", [ "h52.84", "v86.4" ] ],
+    [ "gas1:VCC", "esp:5V", "red", [ "h-64.6", "v57.3", "h-134.4", "v0", "h0", "v-19.2" ] ],
+    [ "esp:34", "gas1:AOUT", "violet", [ "h-33.41", "v182.4", "h201.6" ] ]
+  ],
+  "dependencies": {}
+}
